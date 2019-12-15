@@ -18,5 +18,15 @@ class Tile{
 
     private:
     char symbol;
+    /*
+    *Things to add 
+    * X and Y coordinates of this tile on current screen
+    * references to the tiles adjacent and diagonal to this one 
+    * references to all entities 
+    * references to all equipment
+    * references to all consumables
+    * hierarchy of symbols to display depending on what is on the tile
+    * 
+    */
 };
 #endif
