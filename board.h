@@ -1,8 +1,11 @@
-#ifndef BOARD_H
-#define BOARD_H
+
 #include <vector>
 #include <cstdlib>
 #include "tile.h"
+
+#ifndef BOARD_H
+#define BOARD_H
+
 using namespace std;
 
 class Board{
