@@ -14,4 +14,6 @@ board.o: board.cc board.h tile.h
 
 tile.o: tile.cc
 	$(CC) -c $(CFLAGS) tile.cc
-	
+
+clean:
+	del /f /q *.o a.exe
