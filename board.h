@@ -16,6 +16,8 @@ class Board{
 
     ///getters
     Tile getTileAt(size_t xPos, size_t yPos);
+    size_t getMapWidth() const;
+    size_t getMapHeight() const;
     vector<vector<Tile>>& getMap();
 
     ///constructors

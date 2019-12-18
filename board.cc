@@ -9,6 +9,14 @@ Tile Board::getTileAt(size_t xPos, size_t yPos){
     return map.at(yPos).at(xPos);
 }
 
+size_t Board::getMapWidth() const {
+    return mapWidth;
+}
+
+size_t Board::getMapHeight() const {
+    return mapHeight;
+}
+
 /// returns a reference to the entire map which is a vector of vectors each containing a row of tiles; 
 vector<vector<Tile>>& Board::getMap(){
     return map;
