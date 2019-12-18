@@ -6,7 +6,7 @@ void Board::SetTileAt(size_t x, size_t y, Tile newTile){
 }
 ///returns a tile at a specific x,y coordinate
 Tile Board::getTileAt(size_t xPos, size_t yPos){
-    return map.at(xPos).at(yPos);
+    return map.at(yPos).at(xPos);
 }
 
 /// returns a reference to the entire map which is a vector of vectors each containing a row of tiles; 
