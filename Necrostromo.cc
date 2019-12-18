@@ -4,80 +4,56 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+
 #include "board.h"
 #include "tile.h"
 #include "entity.h"
+
 using namespace std;
 
+void drawScreen(Board gameBoard, vector<Entity> const &entities);
+
 int main() {
-
-
-    // bool quit = false;
-    // string command = "";
-    // Board testBoard; 
-    // Tile testTile;
+    bool quit = false;
+    string command = "";
+    Board testBoard; 
+    Tile testTile;
     Entity player;
-    player = Entity(15, 24, string("stevey"), '%');
-    int health;
-    int x;
-    int y;
-    char symbol;
-    string name;
-    
-    cout << player.getHealth() << endl;
-    cout << player.getPosX() << endl;
-    cout << player.getPosY() << endl;
-    cout << player.getSymbol() << endl;
-    cout << player.getEntityName() << endl;
-
-    cout << "enter new health: ";
-    cin >> health;
-    cout << "enter new x pos: ";
-    cin >> x;
-    cout << "enter new y pos: ";
-    cin >> y;
-    cout << "enter new name: ";
-    cin >> name;
-    cout << "enter new symbol: ";
-    cin >> symbol;
-
-    player.setEntityName(name);
-    player.setHealth(health);
-    player.setPosX(x);
-    player.setPosY(y);
-    player.setSymbol(symbol);
-
-    cout << player.getHealth() << endl;
-    cout << player.getPosX() << endl;
-    cout << player.getPosY() << endl;
-    cout << player.getSymbol() << endl;
-    cout << player.getEntityName() << endl;
-
-
-
-    // while(!quit) {
-    //     testTile.setSymbol('.');
-    //     testBoard = Board(119, 29, testTile);
-    //     string screen ="";
-    //     for(vector<Tile> row : testBoard.getMap()) {
-    //         for (Tile t: row) {
-    //             screen += t.getSymbol();
-    //         }
-    //         screen += "\n";
-    //     }
-    //     screen += "enter a command (y/n) to continue or quit: ";
-    //     cout << screen;
-    //     cin >> command; 
-    //     if(command != "y" && command !="Y"){
-    //         if (command == "n" || command == "N") {
-    //             quit = true;
-    //         }
-    //         else {
-    //             exit(0);
-    //         }
-    //     }
-    // }
-    // cout << "you exited properly" << endl;
+    player.setPosX(4);
+    player.setPosY(4);
+    vector<Entity> entities;
+    entities.push_back(player);
+    testTile.setSymbol('.');
+    testBoard = Board(119, 29, testTile);
+    while(!quit) {
+        drawScreen(testBoard, entities);
+        cin >> command;
+        if(command == "w" || command == "W"){
+            entities.at(0).setPosY(entities.at(0).getPosY() + 1);
+        }
+    }
     return 0;
 }
 
+void drawScreen(Board gameBoard, vector<Entity> const &entities){
+    ///draw the base game board
+    ///draw entities over game board
+    ///
+    string screen ="";
+    for(vector<Tile> row : gameBoard.getMap()) {
+        for (Tile t: row) {
+            screen += t.getSymbol();
+        }
+        screen += "\n";
+    }
+
+    for(Entity ent : entities) {
+        int x = ent.getPosX();
+        int y = ent.getPosY();
+        char sym = ent.getSymbol();
+        size_t indexInString = ((y * gameBoard.getMapWidth()) + y) + x;
+        screen.at(indexInString) = sym;
+    }
+    
+    cout << screen;
+}
