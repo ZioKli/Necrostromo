@@ -5,6 +5,7 @@
 
 ///default constructor
 Entity::Entity(){
+    entityID = 0;
     health = 1;
     posX = 0;
     posY = 0;
@@ -40,6 +41,12 @@ void Entity::setPosY(int newPosY){
         posY = newPosY;
     }
 }
+
+void Entity::setEntityID(int newID){
+    if(newID >= 0){
+        entityID = newID;
+    }
+}
 ///sets the symbol to a new symbol
 void Entity::setSymbol(char newSymbol){
     symbol = newSymbol;
@@ -50,6 +57,8 @@ void Entity::setEntityName(string newName){
         entityName = newName;
     }
 }
+
+
 
 ///returns the current health of the entity
 int Entity::getHealth() const{
@@ -62,6 +71,9 @@ int Entity::getPosX() const{
 ///returns the current Position Y of the entity
 int Entity::getPosY() const{
     return posY;
+}
+int Entity::getEntityID(){
+    return entityID;
 }
 ///returns the current symbol of the entity
 char Entity::getSymbol() const{
