@@ -29,16 +29,24 @@ void Tile::setPosX(int newX){
         xPos = newX;
     }
 }
+void Tile::addNewEntityID(int newID){
+    if(newID >= 0){
+        entityIDs.push_back(newID);
+    }
+}
 
 
-char Tile::getSymbol(){
+vector<int> Tile::getEntityIDs() const {
+    return entityIDs;
+}
+char Tile::getSymbol() const{
     return symbol;
 }
 
-int Tile::getYPos(){
+int Tile::getYPos() const{
     return yPos;
 }
 
-int Tile::getXPos(){
+int Tile::getXPos() const{
     return xPos;
 }
