@@ -4,33 +4,29 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
-
+#include <conio.h>
 #include "board.h"
 #include "tile.h"
 #include "entity.h"
+#include "player.h"
 
 using namespace std;
 
 void drawScreen(Board gameBoard, vector<Entity> const &entities);
+void controlPlayer();
+
 
 int main() {
     bool quit = false;
     string command = "";
     Board testBoard; 
     Tile testTile;
-    Entity player;
-    player.setPosX(4);
-    player.setPosY(4);
+    Player pc;
     vector<Entity> entities;
-    entities.push_back(player);
     testTile.setSymbol('.');
     testBoard = Board(119, 29, testTile);
     while(!quit) {
         drawScreen(testBoard, entities);
-        cin >> command;
-        if(command == "w" || command == "W"){
-            entities.at(0).setPosY(entities.at(0).getPosY() + 1);
-        }
     }
     return 0;
 }
@@ -57,3 +53,4 @@ void drawScreen(Board gameBoard, vector<Entity> const &entities){
     
     cout << screen;
 }
+
