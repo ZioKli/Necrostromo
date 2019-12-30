@@ -3,8 +3,9 @@
 CC = g++
 CFLAGS = -g -Wall -std=c++11
 
-a.exe: necrostromo.o board.o board.h tile.o tile.h
-	$(CC) $(CFLAGS) necrostromo.o board.o tile.o -o a.exe
+a.out: necrostromo.o board.o board.h tile.o tile.h
+	$(CC) $(CFLAGS) necrostromo.o board.o tile.o -o a.out
+
 
 necrostromo.o: necrostromo.cc board.h tile.h
 	$(CC) -c $(CFLAGS) necrostromo.cc 
@@ -16,4 +17,4 @@ tile.o: tile.cc
 	$(CC) -c $(CFLAGS) tile.cc
 
 clean:
-	del /f /q *.o a.exe
+	del /f /q *.o a.out
