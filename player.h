@@ -12,6 +12,9 @@ class Player : public Entity{
     Player(int newHealth, int newPosX, int newPosY, int newEntityID, string newPlayerName, char newSymbol);
 
     ///equipment list
-    ///inherit body parts? 
+    ///inherit body parts?
+    
+    ///friend status for simpler implementation
+    friend void movePlayer(Player &pc, int commandCode); 
 };
 #endif
