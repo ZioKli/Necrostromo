@@ -29,4 +29,46 @@ Player::Player(int newHealth, int newPosX, int newPosY, int newEntityID, string 
     
     entityName = newPlayerName;
     symbol = newSymbol;
+    
+}
+
+void Player::controlPlayer(int commandCode) {
+    movePlayer(commandCode);
+}
+void Player::movePlayer(int commandCode) {
+
+}
+
+void Player::setUpKey(int newKeyCode) {
+    if(newKeyCode >= 0){
+        upKey= newKeyCode;
+    }
+}
+void Player::setDownKey(int newKeyCode) {
+    if(newKeyCode >= 0){
+        downKey= newKeyCode;
+    }
+}
+void Player::setLeftKey(int newKeyCode) {
+    if(newKeyCode >= 0){
+        leftKey= newKeyCode;
+    }
+}
+void Player::setRightKey(int newKeyCode) {
+    if(newKeyCode >= 0){
+        rightKey= newKeyCode;
+    }
+}
+///getters
+int Player::getUpKey() {
+    return upKey;
+}
+int Player::getDownKey() {
+    return downKey;
+}
+int Player::getLeftKey() {
+    return leftKey;
+}
+int Player::getRightKey() {
+    return rightKey;
 }
