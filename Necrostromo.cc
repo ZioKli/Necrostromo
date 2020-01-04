@@ -25,53 +25,45 @@ int main() {
     cbreak();///processes one key at a time with no buffer
     noecho(); /// prevents the input key from being echoed to the user 
     keypad(stdscr, TRUE); /// allows special keys, including the arrow keys, backspace, and delete, to be used.
-
+    curs_set(0);
     
     bool quit = false;
-    string command = "";
+    // string command = "";
     Board testBoard; 
     Tile testTile;
     Player pc;
+    int rows, columns;
+    getmaxyx(stdscr, rows, columns);
+    pc.setPosX(43);
+    pc.setPosY(20);
     vector<Entity> entities;
+    entities.push_back(pc);
     testTile.setSymbol('.');
-    testBoard = Board(119, 29, testTile);
+    testBoard = Board(columns, rows, testTile);
     while(!quit) {
         drawScreen(testBoard, entities);
-        controlPlayer(pc);
     }
     return 0;
 }
 
 void drawScreen(Board gameBoard, vector<Entity> const &entities){
     ///draw the base game board
-    ///draw entities over game board
-    ///
-    string screen ="";
-    for(vector<Tile> row : gameBoard.getMap()) {
-        for (Tile t: row) {
-            screen += t.getSymbol();
+
+    move(0,0);
+    for(size_t row = 0; row < gameBoard.getMap().size(); row++) {
+        for (size_t column = 0; column < gameBoard.getMap().at(row).size(); column++){
+            char symbol = gameBoard.getTileAt(column, row).getSymbol();
+            addch(symbol);
         }
-        screen += "\n";
     }
 
     for(Entity ent : entities) {
         int x = ent.getPosX();
         int y = ent.getPosY();
         char sym = ent.getSymbol();
-        size_t indexInString = ((y * gameBoard.getMapWidth()) + y) + x;
-        screen.at(indexInString) = sym;
+        mvaddch(y, x, sym);
+        // screen.at(indexInString) = sym;
     }
-    
-    cout << screen;
-}
-
-void controlPlayer(Player player){
-    int command = 0;
-    command = getch();
-}
-
-void movePlayer(Player &pc, int commandCode){
-    ///must be able to be remappable
-    ///hardcoded for now. a config class could be used to hold the information for the control;
-    
+    refresh();
+    // printw(screen);
 }
