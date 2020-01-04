@@ -34,9 +34,9 @@ Board::Board(){
     }
 }
 ///creates a board of a given size, using a given default tile;
-Board::Board(size_t xSize, size_t ySize, Tile defaultTile){
-    mapWidth = xSize;
-    mapHeight = ySize;
+Board::Board(size_t columns, size_t rows, Tile defaultTile){
+    mapWidth = columns;
+    mapHeight = rows;
     for(size_t y = 0; y < mapHeight; y++){
         vector<Tile> row;
         for(size_t x = 0; x < mapWidth; x++){
