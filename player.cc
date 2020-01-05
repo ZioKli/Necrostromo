@@ -1,12 +1,18 @@
 #include "player.h"
 
 Player::Player(){
+    
     health = 10;
     posX = 0;
     posY = 0;
     entityID = 0;
     entityName = "Player";
     symbol = '@';
+
+    downKey = 258;
+    upKey = 259;
+    leftKey = 260;
+    rightKey = 261;
 }
 
 Player::Player(int newHealth, int newPosX, int newPosY, int newEntityID, string newPlayerName, char newSymbol) {
@@ -30,12 +36,30 @@ Player::Player(int newHealth, int newPosX, int newPosY, int newEntityID, string 
     entityName = newPlayerName;
     symbol = newSymbol;
     
+    downKey = 258;
+    upKey = 259;
+    leftKey = 260;
+    rightKey = 261;
 }
 
 void Player::controlPlayer(int commandCode) {
     movePlayer(commandCode);
 }
+
 void Player::movePlayer(int commandCode) {
+    
+    if(commandCode == downKey) {
+        posY++;
+    }
+    if(commandCode == upKey && posY > 0) {
+        posY--;
+    }
+    if(commandCode == leftKey && posX > 0) {
+        posX--;
+    }
+    if(commandCode == rightKey) {
+        posX++;
+    }
 
 }
 
@@ -60,15 +84,17 @@ void Player::setRightKey(int newKeyCode) {
     }
 }
 ///getters
-int Player::getUpKey() {
+
+int Player::getUpKey()const {
     return upKey;
 }
-int Player::getDownKey() {
+int Player::getDownKey()const {
     return downKey;
 }
-int Player::getLeftKey() {
+int Player::getLeftKey()const {
     return leftKey;
 }
-int Player::getRightKey() {
+
+int Player::getRightKey()const {
     return rightKey;
 }
