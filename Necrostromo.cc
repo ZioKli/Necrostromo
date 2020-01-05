@@ -15,7 +15,7 @@
 
 using namespace std;
 
-void drawScreen(Board gameBoard, vector<Entity> const &entities);
+void drawScreen(Board &gameBoard, vector<Entity> const &entities, Player pc);
 void controlPlayer(Player player);
 void movePlayer(Player &pc, int commandCode);
 
@@ -26,27 +26,30 @@ int main() {
     noecho(); /// prevents the input key from being echoed to the user 
     keypad(stdscr, TRUE); /// allows special keys, including the arrow keys, backspace, and delete, to be used.
     curs_set(0);
+    int rows, columns;
+    getmaxyx(stdscr, rows, columns);
     
     bool quit = false;
-    // string command = "";
     Board testBoard; 
     Tile testTile;
     Player pc;
-    int rows, columns;
-    getmaxyx(stdscr, rows, columns);
-    pc.setPosX(43);
-    pc.setPosY(20);
     vector<Entity> entities;
-    entities.push_back(pc);
+    int commandCode = 0;
+
+    
     testTile.setSymbol('.');
     testBoard = Board(columns, rows, testTile);
+    
     while(!quit) {
-        drawScreen(testBoard, entities);
+        drawScreen(testBoard, entities, pc);
+        commandCode = getch();
+        pc.controlPlayer(commandCode);
+        commandCode = 0;   
     }
     return 0;
 }
 
-void drawScreen(Board gameBoard, vector<Entity> const &entities){
+void drawScreen(Board  &gameBoard, vector<Entity> const &entities, Player pc){ 
     ///draw the base game board
 
     move(0,0);
@@ -62,8 +65,9 @@ void drawScreen(Board gameBoard, vector<Entity> const &entities){
         int y = ent.getPosY();
         char sym = ent.getSymbol();
         mvaddch(y, x, sym);
-        // screen.at(indexInString) = sym;
     }
+
+    char playerSymbol = pc.getSymbol();
+    mvaddch(pc.getPosY(), pc.getPosX(), playerSymbol);
     refresh();
-    // printw(screen);
 }
