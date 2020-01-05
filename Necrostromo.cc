@@ -35,7 +35,7 @@ int main() {
     Player pc;
     vector<Entity> entities;
     int commandCode = 0;
-
+    int quitKey = 113;
     
     testTile.setSymbol('.');
     testBoard = Board(columns, rows, testTile);
@@ -44,6 +44,14 @@ int main() {
         drawScreen(testBoard, entities, pc);
         commandCode = getch();
         pc.controlPlayer(commandCode);
+    
+        if(commandCode == quitKey){
+            quit = true;
+            nocbreak();
+            keypad(stdscr, false);
+            echo();
+            endwin();
+        }
         commandCode = 0;   
     }
     return 0;
