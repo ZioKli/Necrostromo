@@ -4,23 +4,23 @@ CC = g++
 CFLAGS = -g -Wall -std=c++11
 
 #when adding new classes make sure to add their .o files to this recipe
-a.out: Necrostromo.o board.o entity.o board.h tile.o tile.h entity.h player.o player.h 
+a.out: Necrostromo.o board.o entity.o data/board.h tile.o data/tile.h data/entity.h player.o data/player.h 
 	$(CC) $(CFLAGS) Necrostromo.o board.o tile.o entity.o player.o -lncurses -o a.out 
 
-Necrostromo.o: Necrostromo.cc board.h tile.h
+Necrostromo.o: Necrostromo.cc data/board.h data/tile.h
 	$(CC) -c $(CFLAGS) Necrostromo.cc 
 
-board.o: board.cc board.h tile.h
-	$(CC) -c $(CFLAGS) board.cc
+board.o: data/board.cc data/board.h data/tile.h
+	$(CC) -c $(CFLAGS) data/board.cc
 
-tile.o: tile.cc tile.h
-	$(CC) -c $(CFLAGS) tile.cc
+tile.o: data/tile.cc data/tile.h
+	$(CC) -c $(CFLAGS) data/tile.cc
 
-entity.o: entity.cc entity.h
-	$(CC) -c $(CFLAGS) entity.cc
+entity.o: data/entity.cc data/entity.h
+	$(CC) -c $(CFLAGS) data/entity.cc
 
-player.o: player.cc player.h
-	$(CC) -c $(CFLAGS) player.cc
+player.o: data/player.cc data/player.h
+	$(CC) -c $(CFLAGS) data/player.cc
 
 clean:
 	rm -rf *.o a.out
