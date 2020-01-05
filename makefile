@@ -1,20 +1,28 @@
 
-#Make file used to quickly compile the files used in necrostromo
+#Make file used to quickly compile the files used in Necrostromo
 CC = g++
 CFLAGS = -g -Wall -std=c++11
 
-a.out: necrostromo.o board.o board.h tile.o tile.h
-	$(CC) $(CFLAGS) necrostromo.o board.o tile.o -o a.out
+#when adding new classes make sure to add their .o files to this recipe
+a.out: Necrostromo.o board.o entity.o data/board.h tile.o data/tile.h data/entity.h player.o data/player.h 
+	$(CC) $(CFLAGS) Necrostromo.o board.o tile.o entity.o player.o -lncurses -o a.out 
 
 
-necrostromo.o: necrostromo.cc board.h tile.h
-	$(CC) -c $(CFLAGS) necrostromo.cc 
+Necrostromo.o: Necrostromo.cc data/board.h data/tile.h
+	$(CC) -c $(CFLAGS) Necrostromo.cc 
 
-board.o: board.cc board.h tile.h
-	$(CC) -c $(CFLAGS) board.cc
+board.o: data/board.cc data/board.h data/tile.h
+	$(CC) -c $(CFLAGS) data/board.cc
 
-tile.o: tile.cc
-	$(CC) -c $(CFLAGS) tile.cc
+tile.o: data/tile.cc data/tile.h
+	$(CC) -c $(CFLAGS) data/tile.cc
+
+entity.o: data/entity.cc data/entity.h
+	$(CC) -c $(CFLAGS) data/entity.cc
+
+player.o: data/player.cc data/player.h
+	$(CC) -c $(CFLAGS) data/player.cc
 
 clean:
-	del /f /q *.o a.out
+	rm -rf *.o a.out
+

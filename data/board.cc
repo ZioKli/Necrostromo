@@ -6,7 +6,15 @@ void Board::SetTileAt(size_t x, size_t y, Tile newTile){
 }
 ///returns a tile at a specific x,y coordinate
 Tile Board::getTileAt(size_t xPos, size_t yPos){
-    return map.at(xPos).at(yPos);
+    return map.at(yPos).at(xPos);
+}
+
+size_t Board::getMapWidth() const {
+    return mapWidth;
+}
+
+size_t Board::getMapHeight() const {
+    return mapHeight;
 }
 
 /// returns a reference to the entire map which is a vector of vectors each containing a row of tiles; 
@@ -26,9 +34,9 @@ Board::Board(){
     }
 }
 ///creates a board of a given size, using a given default tile;
-Board::Board(size_t xSize, size_t ySize, Tile defaultTile){
-    mapWidth = xSize;
-    mapHeight = ySize;
+Board::Board(size_t columns, size_t rows, Tile defaultTile){
+    mapWidth = columns;
+    mapHeight = rows;
     for(size_t y = 0; y < mapHeight; y++){
         vector<Tile> row;
         for(size_t x = 0; x < mapWidth; x++){

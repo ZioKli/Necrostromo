@@ -30,15 +30,14 @@ void Tile::setPosX(int newX){
     }
 }
 
-
-char Tile::getSymbol(){
+char Tile::getSymbol() const{
     return symbol;
 }
 
-int Tile::getYPos(){
+int Tile::getYPos() const{
     return yPos;
 }
 
-int Tile::getXPos(){
+int Tile::getXPos() const{
     return xPos;
 }

@@ -1,6 +1,6 @@
 
 #include <cstdlib>
-
+#include <vector>
 #ifndef TILE_H
 #define TILE_H
 
@@ -14,9 +14,9 @@ class Tile{
     void setPosX(int newX);
 
     ///getters
-    char getSymbol();
-    int getYPos();
-    int getXPos();
+    char getSymbol() const;
+    int getYPos() const;
+    int getXPos() const;
     ///constructors
     Tile();
     Tile(char newSymbol, int NewXPos, int newYPos);
