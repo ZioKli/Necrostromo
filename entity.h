@@ -21,13 +21,34 @@ class Entity{
     Entity();
     
     Entity(int newPosY, int newPosX, string newName, char newSymbol);
-
-
+    /*
+    *sets health to a new value greater than or equal to 0
+    */
     void setHealth(int newHealth);
+    
+    /*
+    *sets a new positive x position
+    */
     void setPosX(int newPosX);
+
+    /*
+    *sets a new positive y position
+    */
     void setPosY(int newPosY);
+    
+    /*
+    * sets a new entity id
+    */
     void setEntityID(int newID);
+
+    /*
+    *sets the symbol to be rendered
+    */
     void setSymbol(char newSymbol);
+
+    /*
+    *sets the name of the entity
+    */
     void setEntityName(string newName);
     
     int getHealth() const;
