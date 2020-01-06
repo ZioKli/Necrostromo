@@ -1,15 +1,28 @@
 #include "generator.h"
+#include "board.h"
 
 using namespace noise;
 
-//constructors 
+///constructors 
+
+/**
+*   Default constructor.
+*   @param none
+*   @return a default Generator
+*/
 Generator::Generator(){
     seed = 0;
-    lines = 30;
-    columns = 130;
+    lines = 29;
+    columns = 100;
     zedLevels = 1;
 }
 
+/**
+*   Constructor taking only height and width of the map to generate.
+*   @param newLines the number of lines the generator should have
+*   @param newColumns the number of columns the generator should have
+*   @return a generator of the specified dimensions
+*/
 Generator::Generator(int newLines,int newColumns){
     seed = 0;
     zedLevels = 1;
@@ -18,17 +31,25 @@ Generator::Generator(int newLines,int newColumns){
         lines = newLines;
     }
     else{
-        lines = 30;
+        lines = 29;
     }
 
     if(newColumns > 0){
         columns = newColumns;
     }
     else{
-        columns = 130;
+        columns = 100;
     }
 }
 
+/**
+*   Constructor taking height, width, depth, and seed of the map to generate.
+*   @param newLines the number of lines the generator should have
+*   @param newColumns the number of columns the generator should have
+*   @param newZedLevels the number of zed levels that the generator should create;
+*   @param newSeed the seed to be used to generate the noisemap
+*   @return a generator of the specified dimensions using the given seed
+*/
 Generator::Generator(int newLines, int newColumns, int newZedLevels, int newSeed){
     if(newSeed >= 0) {
         seed = newSeed;
@@ -48,18 +69,18 @@ Generator::Generator(int newLines, int newColumns, int newZedLevels, int newSeed
         lines = newLines;
     }
     else{
-        lines = 30;
+        lines = 29;
     }
 
     if(newColumns > 0){
         columns = newColumns;
     }
     else{
-        columns = 130;
+        columns = 100;
     }
 }
-
 ///setters and generators
+
 void Generator::setSeed(int newSeed){
     if(newSeed >= 0) {
         seed = newSeed;
@@ -105,8 +126,6 @@ void Generator::generateNoiseMap2D(){
         }
     }
 
-    std::cout << "highest: " << high << std::endl;
-    std::cout << "lowest: " << low << std::endl;   
     high = high - low;
 
     for(size_t line = 0; line < noisemap2D.size(); line++){
@@ -117,26 +136,7 @@ void Generator::generateNoiseMap2D(){
             noisemap2D.at(line).at(col) = val;
 
         }
-    }
-
-    high = -MAXFLOAT;
-    low = MAXFLOAT;
-
-    for(vector<double> line : noisemap2D){
-        for(double val : line){
-            if(val < low) {
-                low = val;
-            }
-            else if(val > high) {
-                high = val;
-            }
-        }
-    }
-
-    std::cout << "new highest: " << high << std::endl;
-    std::cout << "new lowest: " << low << std::endl;   
-
-    
+    }    
 }
 
 void Generator::generateNoiseMap2D(int newSeed){
