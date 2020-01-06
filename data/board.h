@@ -33,6 +33,11 @@ class Board{
     * default constructor that builds a board of 129 by 29 with all tiles displaying '.' 
     */
     Board();
+
+    /*
+    * constructor using a noisemap to build the board
+    */
+    Board(vector<vector<double>> noiseMap);
     
     /*
     *constructor which takes in a number of columns and a number of rows and then creates a board using those and the provided default tile.
