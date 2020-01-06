@@ -8,6 +8,7 @@
 #include <ncurses.h>
 #include <stdio.h>
 
+#include "data/generator.h"
 #include "data/board.h"
 #include "data/tile.h"
 #include "data/entity.h"
