@@ -7,6 +7,7 @@ CFLAGS = -g -Wall -std=c++11
 a.out: Necrostromo.o board.o entity.o data/board.h tile.o data/tile.h data/entity.h player.o data/player.h 
 	$(CC) $(CFLAGS) Necrostromo.o board.o tile.o entity.o player.o -lncurses -o a.out 
 
+
 Necrostromo.o: Necrostromo.cc data/board.h data/tile.h
 	$(CC) -c $(CFLAGS) Necrostromo.cc 
 
@@ -24,3 +25,4 @@ player.o: data/player.cc data/player.h
 
 clean:
 	rm -rf *.o a.out
+
