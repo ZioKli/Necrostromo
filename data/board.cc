@@ -47,3 +47,41 @@ Board::Board(size_t columns, size_t rows, Tile defaultTile){
         map.push_back(row);
     }
 }
+Board::Board(vector<vector<double>> noiseMap) {
+    ///to-do
+    ///array for tileset to be used
+    Tile water, shore, grass, stone;
+    double val = 0;
+    water.setSymbol('~');
+    shore.setSymbol(',');
+    grass.setSymbol('.');
+    stone.setSymbol('^');
+    
+    for(size_t line = 0; line < noiseMap.size(); line++){
+        vector<Tile> row;
+        for(size_t column = 0; column < noiseMap.at(line).size(); column++){
+            val = noiseMap.at(line).at(column);
+            if(val < .5) {
+                water.setPosX(column);
+                water.setPosY(line);
+                row.push_back(water);
+            }
+            else if(val < .52){
+                shore.setPosX(column);
+                shore.setPosY(line);
+                row.push_back(shore);
+            }
+            else if(val < .9){
+                grass.setPosX(column);
+                grass.setPosY(line);
+                row.push_back(grass);
+            }
+            else if(val <= 1){
+                stone.setPosX(column);
+                stone.setPosY(line);
+                row.push_back(stone);
+            }
+        }
+        map.push_back(row);
+    }
+}
