@@ -1,4 +1,6 @@
 #include <vector>
+#include <cmath>
+#include <iostream>
 #include <libnoise/module/modulebase.h>
 #include <libnoise/exception.h>
 #include <libnoise/model/model.h>
@@ -12,7 +14,8 @@ class Generator{
     
     public:
     Generator();
-    Generator(int lines,int columns);
+    Generator(int newLines,int newColumns);
+    Generator(int newLines, int newColumns, int newZedLevels, int newSeed);
     module::Perlin perlin;
 
     ///setters and generators    
@@ -30,13 +33,14 @@ class Generator{
     int getSeed();
     int getLines();
     int getColumns();
-    vector<vector<double>> getNoiseMap2D() const;
-    vector<vector<vector<double>>> getNoiseMap3D() const;
+    vector<vector<double>> & getNoiseMap2D();
+    vector<vector<vector<double>>> & getNoiseMap3D();
     private:
 
     int seed;
     int lines;
     int columns;
+    int zedLevels;
     vector<vector<double>> noisemap2D;
     vector<vector<vector<double>>> noisemap3D;
 
