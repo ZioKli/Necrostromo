@@ -29,7 +29,6 @@ int main() {
     curs_set(0);
     int rows, columns;
     getmaxyx(stdscr, rows, columns);
-
     bool quit = false;
     Board testBoard; 
     Tile testTile;
@@ -39,9 +38,8 @@ int main() {
     int quitKey = 113;
 
     Generator gen; 
-    gen.generateNoiseMap2D();
+    gen.generateNoiseMap2D(rows, columns, 1224);
 
-    testTile.setSymbol('.');
     testBoard = Board(gen.getNoiseMap2D());
 
     while(!quit) {
@@ -58,8 +56,6 @@ int main() {
         }
         commandCode = 0;   
     }
-
-    
     return 0;
 
 }
