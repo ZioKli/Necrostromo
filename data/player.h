@@ -3,7 +3,7 @@
 #ifndef PLAYER_H
 #define PLAYER_H
 
-using namespace std;
+
 class Player : public Entity{
     
     public:
@@ -17,7 +17,7 @@ class Player : public Entity{
     /*
     *construction which takes in a health value, positional data, a custom id (0 should be used), a name, and a custom symbol.
     */
-    Player(int newHealth, int newPosX, int newPosY, int newEntityID, string newPlayerName, char newSymbol);
+    Player(int newHealth, int newPosX, int newPosY, int newEntityID, std::string newPlayerName, char newSymbol);
     
     ///setters
 

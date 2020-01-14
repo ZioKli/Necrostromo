@@ -5,7 +5,6 @@
 #ifndef ENTITY_H
 #define ENTITY_H
 
-using namespace std;
 
 class Entity{
     protected:
@@ -13,14 +12,14 @@ class Entity{
     int posX;
     int posY;
     int entityID;
-    string entityName;
+    std::string entityName;
     char symbol;
     
 
     public:
     Entity();
     
-    Entity(int newPosY, int newPosX, string newName, char newSymbol);
+    Entity(int newPosY, int newPosX, std::string newName, char newSymbol);
     /*
     *sets health to a new value greater than or equal to 0
     */
@@ -49,14 +48,14 @@ class Entity{
     /*
     *sets the name of the entity
     */
-    void setEntityName(string newName);
+    void setEntityName(std::string newName);
     
     int getHealth() const;
     int getPosX() const;
     int getPosY() const;
     int getEntityID();
     char getSymbol() const;
-    string getEntityName() const;
+    std::string getEntityName() const;
     
 };
 #endif

@@ -1,5 +1,6 @@
 
 #include "board.h"
+using namespace std;
 ///sets a tile at an x and y coordinate to be a specific tile
 void Board::SetTileAt(size_t x, size_t y, Tile newTile){
     map.at(x).at(y) = newTile;

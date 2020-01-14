@@ -1,12 +1,9 @@
-
 #include <vector>
 #include <cstdlib>
 #include "tile.h"
 
 #ifndef BOARD_H
 #define BOARD_H
-
-using namespace std;
 
 class Board{
     public:
@@ -25,7 +22,7 @@ class Board{
     /*
     *returns a reference to the entire map. 
     */
-    vector<vector<Tile>>& getMap();
+    std::vector<std::vector<Tile>>& getMap();
 
     ///constructors
     
@@ -37,7 +34,7 @@ class Board{
     /*
     * constructor using a noisemap to build the board
     */
-    Board(vector<vector<double>> noiseMap);
+    Board(std::vector<std::vector<double>> noiseMap);
     
     /*
     *constructor which takes in a number of columns and a number of rows and then creates a board using those and the provided default tile.
@@ -47,7 +44,7 @@ class Board{
     private:
     size_t mapWidth;
     size_t mapHeight;
-    vector<vector<Tile>> map;
+    std::vector<std::vector<Tile>> map;
 };
 
 #endif

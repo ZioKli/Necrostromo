@@ -2,7 +2,7 @@
 #include <string>
 #include <cstdlib>
 #include "entity.h"
-
+using namespace std;
 ///default constructor
 Entity::Entity(){
     entityID = 0;

@@ -6,10 +6,11 @@
 #include <libnoise/model/model.h>
 #include <libnoise/noise.h>
 #include <cstdlib>
+
 #ifndef GENERATOR_H
 #define GENERATOR_H
-using namespace noise;
-using std::vector;
+
+
 class Generator{
     
     public:
@@ -68,8 +69,8 @@ class Generator{
     double getFrequency();
     int getOctaveCount();
 
-    vector<vector<double>> & getNoiseMap2D();
-    vector<vector<vector<double>>> & getNoiseMap3D();
+    std::vector<std::vector<double>> & getNoiseMap2D();
+    std::vector<std::vector<std::vector<double>>> & getNoiseMap3D();
     private:
 
     int seed;
@@ -80,8 +81,8 @@ class Generator{
     double frequency;
     double persistance;
     int octaveCount;
-    vector<vector<double>> noisemap2D;
-    vector<vector<vector<double>>> noisemap3D;
+    std::vector<std::vector<double>> noisemap2D;
+    std::vector<std::vector<std::vector<double>>> noisemap3D;
     module::Perlin perlin;
 
 

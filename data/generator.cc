@@ -2,6 +2,7 @@
 #include "board.h"
 
 using namespace noise;
+using namespace std;
 
 ///constructors 
 
