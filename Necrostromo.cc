@@ -60,7 +60,7 @@ int main() {
 
 }
 
-void drawScreen(Board  &gameBoard, vector<Entity> const &entities, Player const &pc){ 
+void drawScreen(Board &gameBoard, vector<Entity> const &entities, Player const &pc){ 
     ///draw the base game board
     move(0,0);///resets the cursor to the top left of the screen 
     for(size_t row = 0; row < gameBoard.getMap().size(); row++) {

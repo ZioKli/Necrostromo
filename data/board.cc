@@ -19,7 +19,8 @@ size_t Board::getMapHeight() const {
 }
 
 /// returns a reference to the entire map which is a vector of vectors each containing a row of tiles; 
-vector<vector<Tile>>& Board::getMap(){
+vector<vector<Tile>>& Board::getMap() {
+    
     return map;
 }
 /// creates a default board with basic tiles in a size that fits the default console window size

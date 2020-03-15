@@ -83,7 +83,7 @@ class Generator{
     int octaveCount;
     std::vector<std::vector<double>> noisemap2D;
     std::vector<std::vector<std::vector<double>>> noisemap3D;
-    module::Perlin perlin;
+    noise::module::Perlin perlin;
 
 
 };
