@@ -1,5 +1,6 @@
 
 #include "board.h"
+using namespace std;
 ///sets a tile at an x and y coordinate to be a specific tile
 void Board::SetTileAt(size_t x, size_t y, Tile newTile){
     map.at(x).at(y) = newTile;
@@ -18,7 +19,8 @@ size_t Board::getMapHeight() const {
 }
 
 /// returns a reference to the entire map which is a vector of vectors each containing a row of tiles; 
-vector<vector<Tile>>& Board::getMap(){
+vector<vector<Tile>>& Board::getMap() {
+    
     return map;
 }
 /// creates a default board with basic tiles in a size that fits the default console window size
@@ -43,6 +45,44 @@ Board::Board(size_t columns, size_t rows, Tile defaultTile){
             defaultTile.setPosX(x);
             defaultTile.setPosY(y);
             row.push_back(defaultTile);
+        }
+        map.push_back(row);
+    }
+}
+Board::Board(vector<vector<double>> noiseMap) {
+    ///to-do
+    ///array for tileset to be used
+    Tile water, shore, grass, stone;
+    double val = 0;
+    water.setSymbol('~');
+    shore.setSymbol(',');
+    grass.setSymbol('.');
+    stone.setSymbol('^');
+    
+    for(size_t line = 0; line < noiseMap.size(); line++){
+        vector<Tile> row;
+        for(size_t column = 0; column < noiseMap.at(line).size(); column++){
+            val = noiseMap.at(line).at(column);
+            if(val < .5) {
+                water.setPosX(column);
+                water.setPosY(line);
+                row.push_back(water);
+            }
+            else if(val < .52){
+                shore.setPosX(column);
+                shore.setPosY(line);
+                row.push_back(shore);
+            }
+            else if(val < .9){
+                grass.setPosX(column);
+                grass.setPosY(line);
+                row.push_back(grass);
+            }
+            else if(val <= 1){
+                stone.setPosX(column);
+                stone.setPosY(line);
+                row.push_back(stone);
+            }
         }
         map.push_back(row);
     }

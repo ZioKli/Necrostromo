@@ -29,7 +29,6 @@ int main() {
     curs_set(0);
     int rows, columns;
     getmaxyx(stdscr, rows, columns);
-    
     bool quit = false;
     Board testBoard; 
     Tile testTile;
@@ -37,15 +36,17 @@ int main() {
     vector<Entity> entities;
     int commandCode = 0;
     int quitKey = 113;
-    
-    testTile.setSymbol('.');
-    testBoard = Board(columns, rows, testTile);
-    
+
+    Generator gen; 
+    gen.generateNoiseMap2D(rows, columns, 1224);
+
+    testBoard = Board(gen.getNoiseMap2D());
+
     while(!quit) {
         drawScreen(testBoard, entities, pc);
         commandCode = getch();
         pc.controlPlayer(commandCode);
-    
+
         if(commandCode == quitKey){
             quit = true;
             nocbreak();
@@ -56,9 +57,10 @@ int main() {
         commandCode = 0;   
     }
     return 0;
+
 }
 
-void drawScreen(Board  &gameBoard, vector<Entity> const &entities, Player const &pc){ 
+void drawScreen(Board &gameBoard, vector<Entity> const &entities, Player const &pc){ 
     ///draw the base game board
     move(0,0);///resets the cursor to the top left of the screen 
     for(size_t row = 0; row < gameBoard.getMap().size(); row++) {

@@ -15,7 +15,7 @@ Player::Player(){
     rightKey = 261;
 }
 
-Player::Player(int newHealth, int newPosX, int newPosY, int newEntityID, string newPlayerName, char newSymbol) {
+Player::Player(int newHealth, int newPosX, int newPosY, int newEntityID, std::string newPlayerName, char newSymbol) {
 
     if(newHealth > 0) {
         health = newHealth;
