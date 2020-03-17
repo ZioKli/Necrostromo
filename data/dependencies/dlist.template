@@ -1,0 +1,145 @@
+
+template<class T>
+dlist<T>::dlist(const dlist<T>& other){
+    head = tail = NULL;
+    if(other.head == NULL){
+        return;
+    }
+    else{
+        for (dnode<T> * cursor = other.head; cursor != NULL; cursor = cursor->next()){
+            rear_insert(cursor->data());
+        }
+    }
+}
+
+template<class T>
+dlist<T>& dlist<T>::operator =(dlist<T> & other){
+    if (this == &other){
+        return *this;
+    }
+    else{
+        clear_list();
+        for (dnode<T> *cursor = other.head; cursor != NULL; cursor = cursor->next()){
+            rear_insert(cursor->data());
+        }
+        return *this;
+    }
+}
+
+template<class T>
+void dlist<T>::rear_insert(T item){
+    /**
+     * first check for empty list
+     * then always attach to tail once we have verified at least one element exists
+     */
+    if (head == NULL && tail == NULL){
+        head = new dnode<T>(item);
+        tail = head;
+        node_count++;
+    }
+    else{
+        tail->setNext(new dnode<T>(item,tail));
+        tail = tail->next();
+        node_count++;
+    }
+}
+
+template<class T>
+void dlist<T>::rear_remove(){
+    if(head == NULL){
+        return;
+    }
+    else if(head == tail){
+        delete head;
+        head = NULL;
+        tail = NULL;
+        --node_count;
+    }
+    else{
+        dnode<T> * temp;
+        temp = tail;
+        tail = tail->previous();
+        tail->setNext(NULL);
+        delete temp;
+        --node_count;
+    }
+}
+
+template<class T> 
+void dlist<T>::front_insert(T item){
+    /**
+     * first check if there are no items in the list
+     * if there no items we set head and tail pointing to our new item
+     * if there are items we create a temporary pointer for holding the head of the list
+     * and then use the head pointer to create a new node and set the next pointer of the new node to point to the
+     * same place as the temp pointer
+     */
+    if(head == NULL && tail == NULL){
+        head = new dnode<T>(item);
+        tail = head;
+        node_count++;
+    }
+    else{
+        dnode<T> * temp;
+        temp = head;
+        head = new dnode<T>(item, NULL, temp);
+        temp->setPrevious(head);
+        node_count++;
+    }
+}
+
+template<class T>
+void dlist<T>::front_remove(){
+    if(head == NULL){
+        return;
+    }
+    else if(head == tail){
+        delete head;
+        head = NULL;
+        tail = NULL;
+        node_count = 0;
+    }
+    else{ 
+        dnode<T> * temp;
+        temp = head;
+        head = head->next();
+        head->setPrevious(NULL);
+        delete temp;
+        --node_count;
+    }
+}
+
+template<class T>
+void dlist<T>::show() const{
+    for(dnode<T> * cursor = head; cursor != NULL; cursor = cursor->next()){
+        std::cout << cursor->data() << std::endl;
+    }
+}
+
+template<class T>
+void dlist<T>::reverse_show() const{
+        for(dnode<T> * cursor = tail; cursor != NULL; cursor = cursor->previous()){
+        std::cout << cursor->data() << std::endl;
+    }
+}
+
+template<class T>
+void dlist<T>::clear_list() {
+    node_count = 0;
+    if(head == NULL){
+        return;
+    }
+    else if(head == tail){
+        delete head;
+        head = tail = NULL;
+    }
+    else{
+        dnode<T>* cursor;
+        for(cursor = head->next(); cursor != NULL; cursor = cursor->next()){
+            delete cursor->previous();
+            cursor->setPrevious(NULL);
+        }
+        delete tail;
+        head = tail = NULL;
+    }
+}
