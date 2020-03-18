@@ -8,11 +8,8 @@
 #include <ncurses.h>
 #include <stdio.h>
 
-#include "data/generator.h"
-#include "data/board.h"
-#include "data/tile.h"
-#include "data/entity.h"
-#include "data/player.h"
+#include "data/head.h"
+
 
 using namespace std;
 
