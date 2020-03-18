@@ -143,3 +143,35 @@ void dlist<T>::clear_list() {
         head = tail = NULL;
     }
 }
+
+template<class T>
+void dlist<T>::insert_before(iterator& iter, T item) {
+    if(iter == begin() || iter == end()){
+        front_insert(item);
+    }
+    else{
+        node_count++;
+        iter.insert_before(item);
+    }
+}
+
+template<class T>
+void dlist<T>::insert_after(iterator& iter, T item) {
+    if(iter == end()|| iter == r_begin()){
+        rear_insert(item);
+    }
+    else{
+        node_count++;
+        iter.insert_after(item);
+    }
+}
+
+template<class T>
+void dlist<T>::remove(iterator& iter) {
+    if(head == tail || head == NULL){
+        rear_remove();
+    }
+    else{
+        iter.remove();
+    }
+}

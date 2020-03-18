@@ -2,7 +2,8 @@
 /**
  * Author: Zion Klinger
  * Date: 2020-03-17
- * Description: a custom doubly linked list that can take a arbitrary type. Edited from the code I developed for project 4 in CS2401.
+ * Description: a custom doubly linked list that can take a arbitrary type.
+ *  Edited from the code I developed for project 4 in CS2401.
  * 
  */
 #include "dnode.h"
@@ -33,6 +34,7 @@ class dlist{
         ~dlist(){
             clear_list();
         }
+        
         /**
          * Copy constructor 
          */        
@@ -114,37 +116,16 @@ class dlist{
             return node_count;
         }
         void remove(iterator& iter);
+        /**
+         * This takes the item which the iterator currently points at and moves it to another list.
+         * this allows the actual object to effectively move between locations
+         */
+        void move_to(iterator &iter, dlist<T> &other);
 };
 
 template<class T>
-void dlist<T>::insert_before(iterator& iter, T item) {
-    if(iter == begin() || iter == end()){
-        front_insert(item);
-    }
-    else{
-        node_count++;
-        iter.insert_before(item);
-    }
-}
-
-template<class T>
-void dlist<T>::insert_after(iterator& iter, T item) {
-    if(iter == end()|| iter == r_begin()){
-        rear_insert(item);
-    }
-    else{
-        node_count++;
-        iter.insert_after(item);
-    }
-}
-
-template<class T>
-void dlist<T>::remove(iterator& iter) {
-    if(head == tail || head == NULL){
-        rear_remove();
-    }
-    else{
-        iter.remove();
-    }
+void dlist<T>::move_to(iterator &iter, dlist<T> &other) {
+    other.rear_insert(iter.current->data());
+    remove(iter);
 }
 #include "dlist.template"
