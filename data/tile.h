@@ -1,10 +1,15 @@
 
 #include <cstdlib>
 #include <vector>
+#include "head.h"
 #ifndef TILE_H
 #define TILE_H
 
-
+/**
+ * todo: 
+ * add pointers to 8 adjacent tiles
+ * add linked list of items and entities currently on this tile
+ */
 class Tile{
     public:
     ///setters
@@ -20,16 +25,22 @@ class Tile{
     Tile();
     Tile(char newSymbol, int NewXPos, int newYPos);
 
+    ///general functions
+    void item_move(Item itm, Tile &other);
+    dlist<Item>::iterator has_item_at(Item itm);
+
+    dlist<Item> items;
+    dlist<Entity> entities;
+
     private:
     char symbol;
     int xPos;
     int yPos;
+    
     /// references to the tiles adjacent and diagonal to this one 
 
     /*
     *Things to add 
-    * X and Y coordinates of this tile on current screen
-    
     * references to all entities 
     * references to all equipment
     * references to all consumables

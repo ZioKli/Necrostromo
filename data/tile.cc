@@ -41,3 +41,20 @@ int Tile::getYPos() const{
 int Tile::getXPos() const{
     return xPos;
 }
+
+void Tile::item_move(Item itm, Tile &other){
+    dlist<Item>::iterator item_loc;
+    item_loc = has_item_at(itm);
+    if(item_loc != NULL){
+        items.move_to(item_loc, other.items);
+    }
+}
+
+dlist<Item>::iterator Tile::has_item_at(Item itm) {
+    for(dlist<Item>::iterator it = items.begin(); it != items.end(); it++){
+        if (itm == *it){
+            return it;
+        }
+    }
+    return items.end();
+}
