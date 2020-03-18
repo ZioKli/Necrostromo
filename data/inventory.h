@@ -1,6 +1,7 @@
 
 #include <vector>
 #include "item.h"
+#include "dependencies/dlist.h"
 #ifndef INVENTORY_H
 #define INVENTORY_H
 
@@ -10,7 +11,7 @@ class Inventory{
     void addItem(Item newItem);
     private: 
     int maxSize;
-    std::vector<Item> items;
+    dlist<Item> items;
 };
 
 #endif
