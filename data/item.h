@@ -8,9 +8,13 @@ class Item{
 
     public:
     Item();
+    bool operator ==(Item other){
+        return(id == other.id);
+    }
 
     private:
     std::string name;
+    int id;
     int uses;
 
 };
