@@ -7,7 +7,7 @@
 class Item{
 
     public:
-    Item();
+    Item(std::string newName = std::string("N/A"), int newId = 0, int newUses = 1);
     bool operator ==(Item other){
         return(id == other.id);
     }

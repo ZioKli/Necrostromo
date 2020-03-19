@@ -1,6 +1,6 @@
 #include "item.h"
-Item::Item(){
-    name = "N/A";
-    uses = 0;
-    id = 0;
+Item::Item(std::string newName, int newId , int newUses){
+    name = newName;
+    uses = newUses;
+    id = newId;
 }
