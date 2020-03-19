@@ -1,7 +1,9 @@
 
 #include <cstdlib>
 #include <vector>
-#include "head.h"
+#include "item.h"
+#include "dependencies/dlist.h"
+#include "entity.h"
 #ifndef TILE_H
 #define TILE_H
 
