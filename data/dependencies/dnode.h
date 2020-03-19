@@ -113,8 +113,14 @@ void node_iterator<T>::insert_after(T item) {
 
 template<class T>
 void node_iterator<T>::remove() {
-    current->previous()->setNext(current->next());
-    current->next()->setPrevious(current->previous());
-    delete current;
+    if(current->next() == NULL){
+        current->previous()->setNext(NULL);
+        delete current;
+    }
+    else{
+        current->previous()->setNext(current->next());
+        current->next()->setPrevious(current->previous());
+        delete current;
+    }
 }
 #endif
