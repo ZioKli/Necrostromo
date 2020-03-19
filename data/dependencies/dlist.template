@@ -1,5 +1,13 @@
 
 template<class T>
+void dlist<T>::move_to(iterator &iter, dlist<T> &other) {
+    other.rear_insert(*iter);
+    remove(iter);
+    node_count--;
+}
+
+
+template<class T>
 dlist<T>::dlist(const dlist<T>& other){
     head = tail = NULL;
     if(other.head == NULL){
@@ -170,6 +178,9 @@ template<class T>
 void dlist<T>::remove(iterator& iter) {
     if(head == tail || head == NULL){
         rear_remove();
+    }
+    else if(iter == begin()){
+        front_remove();
     }
     else{
         iter.remove();

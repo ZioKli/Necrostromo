@@ -8,7 +8,8 @@
  */
 #include "dnode.h"
 #include <iostream>
-
+#ifndef DLIST_H
+#define DLIST_H
 template<class T>
 class dlist{
     private:
@@ -122,10 +123,5 @@ class dlist{
          */
         void move_to(iterator &iter, dlist<T> &other);
 };
-
-template<class T>
-void dlist<T>::move_to(iterator &iter, dlist<T> &other) {
-    other.rear_insert(iter.current->data());
-    remove(iter);
-}
 #include "dlist.template"
+#endif
