@@ -17,6 +17,9 @@ class Entity{
     
 
     public:
+    bool operator ==(Entity other){
+        return(entityID == other.getEntityID());
+    }
     Entity();
     
     Entity(int newPosY, int newPosX, std::string newName, char newSymbol);
