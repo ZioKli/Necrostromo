@@ -49,6 +49,13 @@ void Tile::item_move(Item itm, Tile &other){
         items.move_to(item_loc, other.items);
     }
 }
+void Tile::entity_move(Entity ent, Tile &other){
+    dlist<Entity>::iterator entityLoc;
+    entityLoc = has_entity_at(ent);
+    if(entityLoc != NULL){
+        entities.move_to(entityLoc, other.entities);
+    }
+}
 
 dlist<Item>::iterator Tile::has_item_at(Item itm) {
     for(dlist<Item>::iterator it = items.begin(); it != items.end(); it++){
@@ -57,4 +64,13 @@ dlist<Item>::iterator Tile::has_item_at(Item itm) {
         }
     }
     return items.end();
+}
+
+dlist<Entity>::iterator Tile::has_entity_at(Entity ent){
+    for(dlist<Entity>::iterator it = entities.begin(); it != entities.end(); it++){
+        if(ent == *it){
+            return it;
+        }
+    }
+    return entities.end();
 }

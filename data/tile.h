@@ -29,12 +29,15 @@ class Tile{
 
     ///general functions
     void item_move(Item itm, Tile &other);
-    dlist<Item>::iterator has_item_at(Item itm);
+    void entity_move(Entity ent, Tile &other);
+
 
     dlist<Item> items;
     dlist<Entity> entities;
 
     private:
+    dlist<Item>::iterator has_item_at(Item itm);
+    dlist<Entity>::iterator has_entity_at(Entity ent);
     char symbol;
     int xPos;
     int yPos;
