@@ -2,24 +2,21 @@
 #include <string>
 #include <cstdlib>
 #include "entity.h"
+#include "tile.h"
 using namespace std;
 ///default constructor
-Entity::Entity(){
-    entityID = 0;
-    health = 1;
-    posX = 0;
-    posY = 0;
-    entityName = "N/A";
-    symbol = '@';
-}
 
 ///constructor used for a specific position, name, and symbol
-Entity::Entity(int newPosY, int newPosX, string newName, char newSymbol){
+Entity::Entity(string newName, int newId, int newHealth, char newSymbol, int newPosY, int newPosX){
     posX = newPosX;
     posY = newPosY;
     entityName = newName;
     symbol = newSymbol;
-    health = 1;
+    health = newHealth;
+    entityID = newId;
+}
+Entity::Entity(Tile newTile, string newName, int newId, int newHealth, char newSymbol){
+    
 }
 
 ///sets health to a new value if it is greater than or equal to zero. 

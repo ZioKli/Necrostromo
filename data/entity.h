@@ -20,9 +20,11 @@ class Entity{
     bool operator ==(Entity other){
         return(entityID == other.getEntityID());
     }
-    Entity();
     
-    Entity(int newPosY, int newPosX, std::string newName, char newSymbol);
+    Entity(std::string newName = "N/A", int newId = 0, int newHealth = 1, char newSymbol = 'a', int newPosY = 0 , int newPosX = 0);
+
+    Entity(Tile NewTile, std::string newName = "N/A", int newId = 0, int newHealth = 1, char newSymbol = 'a');
+
     /*
     *sets health to a new value greater than or equal to 0
     */
