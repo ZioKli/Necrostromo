@@ -45,15 +45,17 @@ int Tile::getXPos() const{
 void Tile::item_move(Item itm, Tile &other){
     dlist<Item>::iterator item_loc;
     item_loc = has_item_at(itm);
-    if(item_loc != NULL){
-        items.move_to(item_loc, other.items);
+    if(item_loc != items.end()){
+        other.add_item(itm);
+        items.remove(item_loc);
     }
 }
 void Tile::entity_move(Entity ent, Tile &other){
     dlist<Entity>::iterator entityLoc;
     entityLoc = has_entity_at(ent);
-    if(entityLoc != NULL){
-        entities.move_to(entityLoc, other.entities);
+    if(entityLoc != entities.end()){
+        other.add_entity(ent);
+        entities.remove(entityLoc);
     }
 }
 

@@ -31,11 +31,16 @@ class Tile{
     void item_move(Item itm, Tile &other);
     void entity_move(Entity ent, Tile &other);
 
+    void add_entity(Entity newEnt){
+        entities.rear_insert(newEnt);
+    }
 
+    void add_item(Item newItem){
+        items.rear_insert(newItem);
+    }
+    private:
     dlist<Item> items;
     dlist<Entity> entities;
-
-    private:
     dlist<Item>::iterator has_item_at(Item itm);
     dlist<Entity>::iterator has_entity_at(Entity ent);
     char symbol;
