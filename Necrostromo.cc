@@ -8,8 +8,13 @@
 #include <ncurses.h>
 #include <stdio.h>
 
-#include "data/head.h"
-
+#include "data/generator.h"
+#include "data/board.h"
+#include "data/tile.h"
+#include "data/entity.h"
+#include "data/player.h"
+#include "data/item.h"
+#include "data/dependencies/dlist.h"
 
 using namespace std;
 
@@ -17,64 +22,78 @@ void drawScreen(Board &gameBoard, vector<Entity> const &entities, Player const &
 void controlPlayer(Player player);
 void movePlayer(Player &pc, int commandCode);
 
-int main() {
-    /// initialize ncurses
-    initscr();  /// initializes the window
-    cbreak();///processes one key at a time with no buffer
-    noecho(); /// prevents the input key from being echoed to the user 
-    keypad(stdscr, TRUE); /// allows special keys, including the arrow keys, backspace, and delete, to be used.
-    curs_set(0);
-    int rows, columns;
-    getmaxyx(stdscr, rows, columns);
-    bool quit = false;
-    Board testBoard; 
-    Tile testTile;
-    Player pc;
-    vector<Entity> entities;
-    int commandCode = 0;
-    int quitKey = 113;
-
-    Generator gen; 
-    gen.generateNoiseMap2D(rows, columns, 1224);
-
-    testBoard = Board(gen.getNoiseMap2D());
-
-    while(!quit) {
-        drawScreen(testBoard, entities, pc);
-        commandCode = getch();
-        pc.controlPlayer(commandCode);
-
-        if(commandCode == quitKey){
-            quit = true;
-            nocbreak();
-            keypad(stdscr, false);
-            echo();
-            endwin();
-        }
-        commandCode = 0;   
-    }
+int main(int argc, char const *argv[])
+{
+    Tile Test1;
+    Tile Test2;
+    Entity ent1(Test1,"Alan",0), ent2(Test1,"Dave", 1), ent3(Test2, "Steven", 2), ent4(Test2, "Donald", 3);
+    Test1.add_entity(ent1);
+    Test1.add_entity(ent2);
+    Test2.add_entity(ent3);
+    Test2.add_entity(ent4);
+    
+    
     return 0;
-
 }
 
-void drawScreen(Board &gameBoard, vector<Entity> const &entities, Player const &pc){ 
-    ///draw the base game board
-    move(0,0);///resets the cursor to the top left of the screen 
-    for(size_t row = 0; row < gameBoard.getMap().size(); row++) {
-        for (size_t column = 0; column < gameBoard.getMap().at(row).size(); column++){
-            char symbol = gameBoard.getTileAt(column, row).getSymbol(); ///iterates through the game board and gets the symbol of each tile
-            addch(symbol); /// prints that symbol at its y,x coordinate
-        }
-    }
+// int main() {
+//     /// initialize ncurses
+//     initscr();  /// initializes the window
+//     cbreak();///processes one key at a time with no buffer
+//     noecho(); /// prevents the input key from being echoed to the user 
+//     keypad(stdscr, TRUE); /// allows special keys, including the arrow keys, backspace, and delete, to be used.
+//     curs_set(0);
+//     int rows, columns;
+//     getmaxyx(stdscr, rows, columns);
+//     bool quit = false;
+//     Board testBoard; 
+//     Tile testTile;
+//     Player pc;
+//     vector<Entity> entities;
+//     int commandCode = 0;
+//     int quitKey = 113;
 
-    for(Entity ent : entities) {
-        int x = ent.getPosX();
-        int y = ent.getPosY();
-        char sym = ent.getSymbol();
-        mvaddch(y, x, sym); ///goes through our list of entities and prints them all at their y,x positions
-    }
+//     Generator gen; 
+//     gen.generateNoiseMap2D(rows, columns, 1224);
 
-    char playerSymbol = pc.getSymbol();///gets the player symbol
-    mvaddch(pc.getPosY(), pc.getPosX(), playerSymbol);/// prints the player's symbol at its current y,x position
-    refresh(); ///updates the screen to display all the changes
-}
+//     testBoard = Board(gen.getNoiseMap2D());
+
+//     while(!quit) {
+//         drawScreen(testBoard, entities, pc);
+//         commandCode = getch();
+//         pc.controlPlayer(commandCode);
+
+//         if(commandCode == quitKey){
+//             quit = true;
+//             nocbreak();
+//             keypad(stdscr, false);
+//             echo();
+//             endwin();
+//         }
+//         commandCode = 0;   
+//     }
+//     return 0;
+
+// }
+
+// void drawScreen(Board &gameBoard, vector<Entity> const &entities, Player const &pc){ 
+//     ///draw the base game board
+//     move(0,0);///resets the cursor to the top left of the screen 
+//     for(size_t row = 0; row < gameBoard.getMap().size(); row++) {
+//         for (size_t column = 0; column < gameBoard.getMap().at(row).size(); column++){
+//             char symbol = gameBoard.getTileAt(column, row).getSymbol(); ///iterates through the game board and gets the symbol of each tile
+//             addch(symbol); /// prints that symbol at its y,x coordinate
+//         }
+//     }
+
+//     for(Entity ent : entities) {
+//         int x = ent.getPosX();
+//         int y = ent.getPosY();
+//         char sym = ent.getSymbol();
+//         mvaddch(y, x, sym); ///goes through our list of entities and prints them all at their y,x positions
+//     }
+
+//     char playerSymbol = pc.getSymbol();///gets the player symbol
+//     mvaddch(pc.getPosY(), pc.getPosX(), playerSymbol);/// prints the player's symbol at its current y,x position
+//     refresh(); ///updates the screen to display all the changes
+// }
