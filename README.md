@@ -1,4 +1,4 @@
 # Necrostromo
- Roguelike set in a hellish future
- Created by Zion Klinger
+Code example of a C++ ncurses roguelike world generator. 
+Uses perlin noise generators.
  
