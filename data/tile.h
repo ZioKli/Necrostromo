@@ -24,25 +24,23 @@ class Tile{
     int getYPos() const;
     int getXPos() const;
     ///constructors
-    Tile();
-    Tile(char newSymbol, int NewXPos, int newYPos);
+    Tile(char newSymbol = '.', int NewXPos = 0, int newYPos = 0);
 
     ///general functions
-    void item_move(Item itm, Tile &other);
-    void entity_move(Entity ent, Tile &other);
+    void item_move(Item *itm, Tile &other);
+    void entity_move(Entity *ent, Tile &other);
 
-    void add_entity(Entity newEnt){
-        entities.rear_insert(newEnt);
+    void add_entity(Entity *newEnt){
+        entities.push_back(newEnt);
     }
 
-    void add_item(Item newItem){
-        items.rear_insert(newItem);
+    void add_item(Item *newItem){
+        items.push_back(newItem);
     }
+    
     private:
-    dlist<Item> items;
-    dlist<Entity> entities;
-    dlist<Item>::iterator has_item_at(Item itm);
-    dlist<Entity>::iterator has_entity_at(Entity ent);
+    std::vector<Item*> items;
+    std::vector<Entity*> entities;
     char symbol;
     int xPos;
     int yPos;

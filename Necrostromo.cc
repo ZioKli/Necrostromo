@@ -24,13 +24,21 @@ void movePlayer(Player &pc, int commandCode);
 
 int main(int argc, char const *argv[])
 {
-    Tile Test1;
-    Tile Test2;
-    Entity ent1(Test1,"Alan",0), ent2(Test1,"Dave", 1), ent3(Test2, "Steven", 2), ent4(Test2, "Donald", 3);
-    Test1.add_entity(ent1);
-    Test1.add_entity(ent2);
-    Test2.add_entity(ent3);
-    Test2.add_entity(ent4);
+    Tile t1, t2,t3, t4;
+    Item *it;
+
+    it = new Item;
+    t1.add_item(it);
+    delete it;
+
+    it = new Item("sword", 1);
+    t2.add_item(it);
+    delete it;
+
+    it = new Item("blaster", 2);
+    t2.add_item(it);
+    delete it;
+
     
     
     return 0;

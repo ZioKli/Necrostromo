@@ -1,12 +1,5 @@
 #include "tile.h"
 
-
-Tile::Tile(){
-    symbol = '.';
-    xPos = 0;
-    yPos = 0;
-}
-
 Tile::Tile(char newSymbol, int NewXPos, int newYPos){
     symbol = newSymbol;
     xPos = NewXPos;
@@ -42,37 +35,29 @@ int Tile::getXPos() const{
     return xPos;
 }
 
-void Tile::item_move(Item itm, Tile &other){
-    dlist<Item>::iterator item_loc;
-    item_loc = has_item_at(itm);
-    if(item_loc != items.end()){
-        other.add_item(itm);
-        items.remove(item_loc);
-    }
-}
-void Tile::entity_move(Entity ent, Tile &other){
-    dlist<Entity>::iterator entityLoc;
-    entityLoc = has_entity_at(ent);
-    if(entityLoc != entities.end()){
-        other.add_entity(ent);
-        entities.remove(entityLoc);
-    }
-}
-
-dlist<Item>::iterator Tile::has_item_at(Item itm) {
-    for(dlist<Item>::iterator it = items.begin(); it != items.end(); it++){
-        if (itm == *it){
-            return it;
+void Tile::item_move(Item *itm, Tile &other){
+    bool found = false;
+    for(size_t i = 0; i < items.size(); i++){
+        if(itm == items[i]){
+            items.erase(items.begin() + i);
+            found = true;
         }
     }
-    return items.end();
+    if(!found){
+        return;
+    }
+    other.add_item(itm);
 }
-
-dlist<Entity>::iterator Tile::has_entity_at(Entity ent){
-    for(dlist<Entity>::iterator it = entities.begin(); it != entities.end(); it++){
-        if(ent == *it){
-            return it;
+void Tile::entity_move(Entity *ent, Tile &other){
+    bool found = false;
+    for(size_t i = 0; i < entities.size(); i++){
+        if(ent == entities[i]){
+            entities.erase(entities.begin() + i);
+            found = true;
         }
     }
-    return entities.end();
+    if(!found){
+        return;
+    }
+    other.add_entity(ent);
 }

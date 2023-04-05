@@ -16,7 +16,6 @@ Entity::Entity(string newName, int newId, int newHealth, char newSymbol, int new
     entityID = newId;
 }
 Entity::Entity(Tile newTile, string newName, int newId, int newHealth, char newSymbol){
-    
 }
 
 ///sets health to a new value if it is greater than or equal to zero. 
